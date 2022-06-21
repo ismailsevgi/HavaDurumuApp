@@ -13,14 +13,18 @@ const getResult = (cityName) => {
     .then((res) => res.json())
     .then((data) => {
       document.querySelector('.temp').innerHTML =
-        Math.floor(data.main.temp) + '°c';
+        Math.round(data.main.temp) + '°c';
       document.querySelector('.city').innerHTML =
         data.name + ', ' + data.sys.country;
       document.querySelector('.desc').innerHTML = data.weather[0].description;
       document.querySelector('.minmax').innerHTML =
-        Math.floor(data.main.temp_min) +
+        Math.round(data.main.temp_min) +
         '°c / ' +
-        Math.floor(data.main.temp_max);
+        Math.round(data.main.temp_max) +
+        '°c';
+    })
+    .catch((err) => {
+      alert('Böyle bir şehir yok!');
     });
 };
 
